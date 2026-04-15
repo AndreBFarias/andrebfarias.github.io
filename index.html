@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andre Farias - Tecnomago | Arquiteto de Dados</title>
+    <meta name="description" content="Portfolio de projetos open source de Andre Farias - Arquiteto de Dados e Especialista em Engenharia de Dados">
+    <style>
+        :root {
+            --bg: #282a36;
+            --current: #44475a;
+            --fg: #f8f8f2;
+            --comment: #6272a4;
+            --cyan: #8be9fd;
+            --green: #50fa7b;
+            --orange: #ffb86c;
+            --pink: #ff79c6;
+            --purple: #bd93f9;
+            --red: #ff5555;
+            --yellow: #f1fa8c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid var(--current);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--comment);
+            font-size: 1rem;
+        }
+
+        .links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            color: var(--fg);
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--comment);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .links a:hover {
+            border-color: var(--purple);
+            color: var(--purple);
+            background: rgba(189, 147, 249, 0.1);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--current);
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--green);
+        }
+
+        .stat .label {
+            font-size: 0.85rem;
+            color: var(--comment);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--pink);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--current);
+        }
+
+        .category-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .cat-desktop { background: rgba(189, 147, 249, 0.2); color: var(--purple); }
+        .cat-data { background: rgba(139, 233, 253, 0.2); color: var(--cyan); }
+        .cat-ai { background: rgba(255, 121, 198, 0.2); color: var(--pink); }
+        .cat-tool { background: rgba(80, 250, 123, 0.2); color: var(--green); }
+        .cat-web { background: rgba(255, 184, 108, 0.2); color: var(--orange); }
+        .cat-system { background: rgba(241, 250, 140, 0.2); color: var(--yellow); }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project {
+            background: var(--current);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .project:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .project h3 {
+            color: var(--green);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .project h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .project h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .project .desc {
+            color: var(--fg);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .project .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project .tech span {
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            background: rgba(248, 248, 242, 0.08);
+            color: var(--comment);
+        }
+
+        .project .status {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .status-prod { color: var(--green); }
+        .status-beta { color: var(--yellow); }
+        .status-dev { color: var(--orange); }
+
+        .stack-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stack-card {
+            background: var(--current);
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+
+        .stack-card h4 {
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .stack-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stack-card ul li {
+            padding: 0.2rem 0;
+            color: var(--fg);
+            opacity: 0.85;
+            font-size: 0.9rem;
+        }
+
+        .stack-card ul li::before {
+            content: ">";
+            color: var(--purple);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--current);
+            color: var(--comment);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--purple);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .projects { grid-template-columns: 1fr; }
+            .stats { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Andre Farias</h1>
+            <div class="subtitle">Tecnomago | Arquiteto de Dados</div>
+            <p>Transmutando o caos de dados brutos em clareza estrategica. Pipelines resilientes, modelos preditivos e insights onde outros veem ruido.</p>
+            <div class="links">
+                <a href="https://github.com/[REDACTED]">GitHub</a>
+                <a href="https://www.linkedin.com/in/andrefariasdados/">LinkedIn</a>
+                <a href="mailto:[REDACTED]">Email</a>
+            </div>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="number">23+</div>
+                <div class="label">Projetos Open Source</div>
+            </div>
+            <div class="stat">
+                <div class="number">100%</div>
+                <div class="label">GPL v3</div>
+            </div>
+            <div class="stat">
+                <div class="number">2019</div>
+                <div class="label">Desde</div>
+            </div>
+            <div class="stat">
+                <div class="number">Python</div>
+                <div class="label">Stack Principal</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Aplicacoes Desktop e TUI</h2>
+        <div class="projects">
+            <div class="project">
+                <span class="category-label cat-ai">IA Local</span>
+                <h3><a href="https://github.com/[REDACTED]/Luna">Luna</a></h3>
+                <div class="desc">Assistente multimodal offline-first com 7 personalidades, voz, visao e memoria semantica. Interface TUI com tema Dracula.</div>
+                <div class="tech">
+                    <span>Python</span><span>Textual</span><span>Ollama</span><span>XTTS</span><span>Whisper</span>
+                </div>
+                <div class="status status-prod">Producao v5.6</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-desktop">Desktop</span>
+                <h3><a href="https://github.com/[REDACTED]/Conversor-Video-Para-ASCII">Extase em 4R73</a></h3>
+                <div class="desc">Conversor de video para ASCII art com GPU (CUDA), chroma key calibrador, PostFX, matrix rain e export multi-formato.</div>
+                <div class="tech">
+                    <span>Python</span><span>GTK</span><span>OpenCV</span><span>PyTorch</span><span>CUDA</span>
+                </div>
+                <div class="status status-prod">Producao v2.7</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-desktop">Desktop</span>
+                <h3><a href="https://github.com/[REDACTED]/FogStripper-Removedor-Background">FogStripper</a></h3>
+                <div class="desc">Removedor de fundo de imagens com redes neurais locais. 4 modelos, upscaling RealESRGAN, export SVG, processamento em lote.</div>
+                <div class="tech">
+                    <span>Python</span><span>PyQt6</span><span>rembg</span><span>RealESRGAN</span>
+                </div>
+                <div class="status status-prod">Producao v1.2</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-desktop">Desktop</span>
+                <h3><a href="https://github.com/[REDACTED]/PDForge">PDForge</a></h3>
+                <div class="desc">Editor de PDF para Linux com OCR GPU, classificacao ML, busca/substituicao, compressao, assinaturas e processamento em lote.</div>
+                <div class="tech">
+                    <span>Python</span><span>PyQt6</span><span>PyMuPDF</span><span>EasyOCR</span><span>CUDA</span>
+                </div>
+                <div class="status status-prod">Producao v1.1</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-desktop">Desktop</span>
+                <h3><a href="https://github.com/[REDACTED]/chrononauta">Chrononauta</a></h3>
+                <div class="desc">Archiver de playlists YouTube para o Internet Archive. Categorizacao com IA local, MusicBrainz, download MP3/MP4, preservacao digital.</div>
+                <div class="tech">
+                    <span>Python</span><span>GTK4</span><span>Ollama</span><span>yt-dlp</span>
+                </div>
+                <div class="status status-beta">Beta v0.2</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-ai">IA/Seguranca</span>
+                <h3><a href="https://github.com/[REDACTED]/Detector-de-Doppelganger">Detector de Doppelganger</a></h3>
+                <div class="desc">Detector e humanizador de texto gerado por IA. Modo local (distilbert), Ollama e API. Fine-tuned para Portugues Brasileiro.</div>
+                <div class="tech">
+                    <span>Python</span><span>PyQt</span><span>DistilBERT</span><span>Ollama</span>
+                </div>
+                <div class="status status-prod">Producao v1.0</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-desktop">Desktop</span>
+                <h3><a href="https://github.com/[REDACTED]/QR-Code-Void-Generator">VOID QR Code</a></h3>
+                <div class="desc">Gerador moderno de QR Code com logos, cores, estilos de pontos, payloads (WiFi, Pix, redes sociais) e temas.</div>
+                <div class="tech">
+                    <span>Python</span><span>PyQt6</span><span>qrcode</span><span>Pillow</span>
+                </div>
+                <div class="status status-beta">Beta</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-ai">IA Local</span>
+                <h3><a href="https://github.com/[REDACTED]/Neurosonancy">Neurosonancy</a></h3>
+                <div class="desc">Toolkit de clonagem e fine-tuning de voz. ElevenLabs, Chatterbox TTS, Coqui XTTS, transcricao Whisper, monitor de audio.</div>
+                <div class="tech">
+                    <span>Python</span><span>Textual</span><span>ElevenLabs</span><span>XTTS</span><span>Whisper</span>
+                </div>
+                <div class="status status-beta">Beta</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-ai">IA Local</span>
+                <h3><a href="https://github.com/[REDACTED]/Project_Beholder">Project Beholder</a></h3>
+                <div class="desc">Agente de visao AI para web scraping e analise de imagens. GTK4, Ollama offline, Playwright, K-Means clustering.</div>
+                <div class="tech">
+                    <span>Python</span><span>GTK4</span><span>Ollama</span><span>Playwright</span><span>scikit-learn</span>
+                </div>
+                <div class="status status-dev">Em desenvolvimento</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-tool">Ferramenta</span>
+                <h3><a href="https://github.com/[REDACTED]/fusectl">fusectl</a></h3>
+                <div class="desc">Gerenciador de CFW para Nintendo Switch (Tegra X1). Injecao RCM, instalacao de pacotes CFW, TUI Dracula, multi-formato.</div>
+                <div class="tech">
+                    <span>Python</span><span>Textual</span><span>libusb</span><span>Linux</span>
+                </div>
+                <div class="status status-beta">Beta v0.1.1</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Engenharia de Dados e Analytics</h2>
+        <div class="projects">
+            <div class="project">
+                <span class="category-label cat-data">ETL/Financas</span>
+                <h3><a href="https://github.com/[REDACTED]/protocolo-ouroboros">Protocolo Ouroboros</a></h3>
+                <div class="desc">Pipeline ETL para consolidacao de dados financeiros pessoais. Dashboard Streamlit, integracao Obsidian, simulador IRPF.</div>
+                <div class="tech">
+                    <span>Python</span><span>Pandas</span><span>Streamlit</span><span>Plotly</span><span>Tesseract</span>
+                </div>
+                <div class="status status-prod">Producao</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">ETL/Social</span>
+                <h3><a href="https://github.com/[REDACTED]/stilingue-social-listening-etl">Whisper-Pulse</a></h3>
+                <div class="desc">ETL + dashboard Streamlit para monitoramento de redes sociais. 6 tabelas estruturadas, 23 metricas, relatorios HTML.</div>
+                <div class="tech">
+                    <span>Python</span><span>Pandas</span><span>Streamlit</span><span>Plotly</span><span>Loguru</span>
+                </div>
+                <div class="status status-prod">Producao</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">ETL/BigQuery</span>
+                <h3><a href="https://github.com/[REDACTED]/dbt-date-harvester">Chrono Harvester</a></h3>
+                <div class="desc">Extracao automatica de datas de referencia do BigQuery para paineis analiticos. TUI interativo e modo batch.</div>
+                <div class="tech">
+                    <span>Python</span><span>BigQuery</span><span>dbt</span><span>Textual</span><span>Pandas</span>
+                </div>
+                <div class="status status-prod">Producao</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">Financas</span>
+                <h3><a href="https://github.com/[REDACTED]/Controle_de_Bordo_OS">Controle de Bordo</a></h3>
+                <div class="desc">Sistema de gestao pessoal open source. Financas, habitos, saude, estudos. Arquitetura hexagonal, SQLite, local-first.</div>
+                <div class="tech">
+                    <span>Python</span><span>Pydantic</span><span>SQLite</span><span>Typer</span><span>Flet</span>
+                </div>
+                <div class="status status-dev">Em desenvolvimento</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">BI/Power BI</span>
+                <h3><a href="https://github.com/[REDACTED]/pbix-mapper">Cartographer</a></h3>
+                <div class="desc">Ferramenta CLI+Web para extrair e mapear todas as fontes de dados de arquivos Power BI (.pbix). Pipeline de 6 comandos.</div>
+                <div class="tech">
+                    <span>Python</span><span>Click</span><span>Streamlit</span><span>pbixray</span><span>Pandas</span>
+                </div>
+                <div class="status status-dev">Em desenvolvimento</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">Dados</span>
+                <h3><a href="https://github.com/[REDACTED]/Python-Data-Toolkit">DataForge</a></h3>
+                <div class="desc">Ferramenta visual com 11 modulos para manipulacao de dados tabulares. Analise, limpeza, ETL, geolocalizacao, anonimizacao.</div>
+                <div class="tech">
+                    <span>Python</span><span>CustomTkinter</span><span>Pandas</span><span>Matplotlib</span>
+                </div>
+                <div class="status status-beta">Beta</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Pesquisa e Ferramentas Especializadas</h2>
+        <div class="projects">
+            <div class="project">
+                <span class="category-label cat-ai">IA/Pesquisa</span>
+                <h3><a href="https://github.com/[REDACTED]/Gaslighting-Is-All-You-Need">Gaslighting Is All You Need</a></h3>
+                <div class="desc">Framework de pesquisa em Context-Induced Alignment Drift. Estudo de vulnerabilidades de LLMs via many-shot jailbreaking.</div>
+                <div class="tech">
+                    <span>Python</span><span>customtkinter</span><span>llama-cpp</span>
+                </div>
+                <div class="status status-beta">Pesquisa</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-ai">IA/Code</span>
+                <h3><a href="https://github.com/[REDACTED]/Nyx-Code">Nyx-Code</a></h3>
+                <div class="desc">Agente coder local 100% offline. 34 ferramentas, 47 comandos, 10 servicos. Ollama + Qwen3:4B.</div>
+                <div class="tech">
+                    <span>Python</span><span>Click</span><span>Ollama</span><span>Qwen3</span>
+                </div>
+                <div class="status status-dev">Em desenvolvimento</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">Pesquisa</span>
+                <h3><a href="https://github.com/[REDACTED]/SerpApi-Buscas-Academicas">Tome-Seeker</a></h3>
+                <div class="desc">Pipeline de busca academica para criacao de dossies tematicos. Coleta async, formatacao, ranking por relevancia e impacto.</div>
+                <div class="tech">
+                    <span>Python</span><span>SerpAPI</span><span>aiohttp</span><span>Pandas</span>
+                </div>
+                <div class="status status-beta">Beta</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-web">Web/Gaming</span>
+                <h3><a href="https://github.com/[REDACTED]/elden-ring-tracker">GraceMap</a></h3>
+                <div class="desc">Dashboard interativo com mapa Leaflet para Elden Ring. Tracking de bosses, items, NPCs, achievements e save parsing.</div>
+                <div class="tech">
+                    <span>Python</span><span>Streamlit</span><span>Leaflet</span><span>SQLite</span>
+                </div>
+                <div class="status status-prod">Producao v1.4</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-data">D&D</span>
+                <h3><a href="https://github.com/[REDACTED]/5e-tools-ai">5e-tools Tradutor</a></h3>
+                <div class="desc">Tradutor de aventuras D&D 5e para PT-BR com IA local. PWA offline, OCR de imagens, glossario de 6700+ termos.</div>
+                <div class="tech">
+                    <span>Python</span><span>Ollama</span><span>FastAPI</span><span>Textual</span><span>Jinja2</span>
+                </div>
+                <div class="status status-prod">Producao v2.0</div>
+            </div>
+
+            <div class="project">
+                <span class="category-label cat-system">Sistema</span>
+                <h3><a href="https://github.com/[REDACTED]/Pop-OS-Nitro-5-Linux-Utilitarios">NitroKit</a></h3>
+                <div class="desc">Colecao de scripts Bash para reparo, diagnostico e manutencao de sistemas Linux. Audio, drivers, backup, inventario.</div>
+                <div class="tech">
+                    <span>Bash</span><span>Linux</span><span>PipeWire</span><span>systemd</span>
+                </div>
+                <div class="status status-prod">Producao</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="stack-section">
+            <div class="stack-card">
+                <h4>Linguagens</h4>
+                <ul>
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>R</li>
+                    <li>Bash</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="stack-card">
+                <h4>Engenharia de Dados</h4>
+                <ul>
+                    <li>Spark / PySpark</li>
+                    <li>dbt</li>
+                    <li>Airflow / Composer</li>
+                    <li>Pandas / Polars</li>
+                    <li>BigQuery</li>
+                </ul>
+            </div>
+            <div class="stack-card">
+                <h4>IA e Machine Learning</h4>
+                <ul>
+                    <li>Ollama (Local-First)</li>
+                    <li>PyTorch / CUDA</li>
+                    <li>Transformers</li>
+                    <li>scikit-learn</li>
+                    <li>Whisper / XTTS</li>
+                </ul>
+            </div>
+            <div class="stack-card">
+                <h4>Interfaces</h4>
+                <ul>
+                    <li>GTK4 / Libadwaita</li>
+                    <li>PyQt6</li>
+                    <li>Textual (TUI)</li>
+                    <li>Streamlit</li>
+                    <li>CustomTkinter</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>Todos os projetos sao open source sob <strong>GPLv3</strong></p>
+            <p style="margin-top: 0.5rem;">
+                <a href="https://github.com/[REDACTED]">github.com/[REDACTED]</a>
+            </p>
+            <p style="margin-top: 1rem; font-style: italic;">"Codigo que nao pode ser entendido nao pode ser mantido."</p>
+        </footer>
+    </div>
+</body>
+</html>
